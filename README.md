@@ -1,1 +1,1 @@
-### this repo has large image files, so wither compress it or use your own small size images
+### this repo has large image files, so either compress it or use your own small size images
