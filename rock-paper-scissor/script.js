@@ -9,32 +9,73 @@ let computerChoice = document.querySelectorAll('button');
 
 computerChoice.forEach((choice) => {
 	choice.addEventListener('click', (event) => {
-		user = event.target.id;
-		computerChoiceDisplay.innerHTML = user;
+		userChoice = event.target.id;
+		userChoiceDisplay.innerHTML = userChoice;
 
 		// computer choosing its selection
-		computerChoose();
+		computerChose();
 		finalScore();
 	});
 });
 
-function computerChoose() {
+function computerChose() {
 	const randomNumber = Math.floor(Math.random() * 3) + 1;
 
 	if (randomNumber === 1) {
-		computerChoice.innerHTML = 'rock';
+		computerChoice = 'rock';
 	}
 	if (randomNumber === 2) {
-		computerChoice.innerHTML = 'paper';
+		computerChoice = 'paper';
 	}
 	if (randomNumber === 3) {
-		computerChoice.innerHTML = 'scissor';
+		computerChoice = 'scissor';
 	}
+
+	computerChoiceDisplay.innerHTML = computerChoice;
 }
 
 function finalScore() {
-	if (computerChoiceDisplay === computerChoice) {
+	let scoreColor = document.getElementById('score');
+
+	// for tie
+	if (computerChoice === userChoice) {
 		score = 'Tie';
+		scoreColor.style.color = '#30b2ff';
+	}
+
+	let rockPC = computerChoice === 'rock';
+	let paperPC = computerChoice === 'paper';
+	let scissorPC = computerChoice === 'scissor';
+
+	// for rock
+	if (rockPC && userChoice === 'scissor') {
+		score = 'Computer Won';
+		scoreColor.style.color = 'red';
+	}
+
+	if (rockPC && userChoice === 'paper') {
+		score = 'Player 1 Won';
+		scoreColor.style.color = '#02ff02';
+	}
+
+	// for paper
+	if (paperPC && userChoice === 'rock') {
+		score = 'Computer Won';
+		scoreColor.style.color = 'red';
+	}
+	if (paperPC && userChoice === 'scissor') {
+		score = 'Player 1 Won';
+		scoreColor.style.color = '#02ff02';
+	}
+
+	// for scissor
+	if (scissorPC && userChoice === 'paper') {
+		score = 'Computer Won';
+		scoreColor.style.color = 'red';
+	}
+	if (scissorPC && userChoice === 'rock') {
+		score = ' Player 1 Won';
+		scoreColor.style.color = '#02ff02';
 	}
 
 	gameScore.innerHTML = score;
